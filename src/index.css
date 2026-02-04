@@ -1,0 +1,258 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  /* Semantic colors */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  /* Macro colors */
+  --color-macro-calories: var(--macro-calories);
+  --color-macro-protein: var(--macro-protein);
+  --color-macro-carbs: var(--macro-carbs);
+  --color-macro-fat: var(--macro-fat);
+  --color-macro-fiber: var(--macro-fiber);
+  --color-macro-sugar: var(--macro-sugar);
+  --color-macro-salt: var(--macro-salt);
+  /* Primary palette shades */
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  /* Neutral grey palette */
+  --color-grey-50: var(--grey-50);
+  --color-grey-100: var(--grey-100);
+  --color-grey-200: var(--grey-200);
+  --color-grey-300: var(--grey-300);
+  --color-grey-400: var(--grey-400);
+  --color-grey-500: var(--grey-500);
+  --color-grey-600: var(--grey-600);
+  --color-grey-700: var(--grey-700);
+  --color-grey-800: var(--grey-800);
+  --color-grey-900: var(--grey-900);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Happy Hues Palette 8 - Warm cream with teal & coral */
+  --background: #f8f5f2;
+  --foreground: #232323;
+  --card: #fffffe;
+  --card-foreground: #232323;
+  --popover: #fffffe;
+  --popover-foreground: #232323;
+  /* Teal primary */
+  --primary: #078080;
+  --primary-foreground: #fffffe;
+  --secondary: #f8f5f2;
+  --secondary-foreground: #232323;
+  --muted: #efe9e4;
+  --muted-foreground: #5f5f5f;
+  --accent: #f45d48;
+  --accent-foreground: #fffffe;
+  --destructive: #e53e3e;
+  --border: #ddd8d3;
+  --input: #ddd8d3;
+  --ring: #078080;
+  /* Chart colors */
+  --chart-1: #078080;
+  --chart-2: #f45d48;
+  --chart-3: #232323;
+  --chart-4: #5f5f5f;
+  --chart-5: #f8f5f2;
+  /* Sidebar */
+  --sidebar: #232323;
+  --sidebar-foreground: #fffffe;
+  --sidebar-primary: #078080;
+  --sidebar-primary-foreground: #fffffe;
+  --sidebar-accent: #3a3a3a;
+  --sidebar-accent-foreground: #fffffe;
+  --sidebar-border: rgba(255, 255, 254, 0.12);
+  --sidebar-ring: #078080;
+  /* Semantic colors */
+  --success: #078080;
+  --success-foreground: #fffffe;
+  --warning: #f59e0b;
+  --warning-foreground: #232323;
+  --info: #3b82f6;
+  --info-foreground: #fffffe;
+  /* Primary palette (teal) */
+  --primary-50: #f0fdfa;
+  --primary-100: #ccfbf1;
+  --primary-200: #99f6e4;
+  --primary-300: #5eead4;
+  --primary-400: #2dd4bf;
+  --primary-500: #078080;
+  --primary-600: #0d9488;
+  --primary-700: #0f766e;
+  --primary-800: #115e59;
+  --primary-900: #134e4a;
+  /* Macro colors */
+  --macro-calories: #f45d48;    /* Coral - energy/fire */
+  --macro-protein: #078080;     /* Teal - matches primary */
+  --macro-carbs: #f59e0b;       /* Amber - energy */
+  --macro-fat: #8b5cf6;         /* Purple - lipids */
+  --macro-fiber: #22c55e;       /* Green - plants/healthy */
+  --macro-sugar: #ef4444;       /* Red - limit */
+  --macro-salt: #3b82f6;        /* Blue - mineral */
+  /* Neutral grey palette - warm tinted to match theme */
+  --grey-50: #faf9f8;
+  --grey-100: #f3f1ef;
+  --grey-200: #e8e4e0;
+  --grey-300: #d6d1cb;
+  --grey-400: #b5aea6;
+  --grey-500: #8c857c;
+  --grey-600: #6b655e;
+  --grey-700: #524d48;
+  --grey-800: #3a3632;
+  --grey-900: #232120;
+}
+
+.dark {
+  /* Dark mode - inverted palette 8 */
+  --background: #232323;
+  --foreground: #f8f5f2;
+  --card: #2e2e2e;
+  --card-foreground: #f8f5f2;
+  --popover: #2e2e2e;
+  --popover-foreground: #f8f5f2;
+  --primary: #0a9a9a;
+  --primary-foreground: #fffffe;
+  --secondary: #3a3a3a;
+  --secondary-foreground: #f8f5f2;
+  --muted: #3a3a3a;
+  --muted-foreground: #a8a8a8;
+  --accent: #f45d48;
+  --accent-foreground: #fffffe;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 254, 0.12);
+  --input: rgba(255, 255, 254, 0.12);
+  --ring: #0a9a9a;
+  --chart-1: #0a9a9a;
+  --chart-2: #f45d48;
+  --chart-3: #f8f5f2;
+  --chart-4: #a8a8a8;
+  --chart-5: #3a3a3a;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #f8f5f2;
+  --sidebar-primary: #0a9a9a;
+  --sidebar-primary-foreground: #fffffe;
+  --sidebar-accent: #3a3a3a;
+  --sidebar-accent-foreground: #f8f5f2;
+  --sidebar-border: rgba(255, 255, 254, 0.12);
+  --sidebar-ring: #0a9a9a;
+  --success: #0a9a9a;
+  --success-foreground: #fffffe;
+  --warning: #f59e0b;
+  --warning-foreground: #fffffe;
+  --info: #3b82f6;
+  --info-foreground: #fffffe;
+  --primary-50: #134e4a;
+  --primary-100: #115e59;
+  --primary-200: #0f766e;
+  --primary-300: #0d9488;
+  --primary-400: #0a9a9a;
+  --primary-500: #2dd4bf;
+  --primary-600: #5eead4;
+  --primary-700: #99f6e4;
+  --primary-800: #ccfbf1;
+  --primary-900: #f0fdfa;
+  /* Macro colors */
+  --macro-calories: #f45d48;
+  --macro-protein: #0a9a9a;
+  --macro-carbs: #f59e0b;
+  --macro-fat: #8b5cf6;
+  --macro-fiber: #22c55e;
+  --macro-sugar: #ef4444;
+  --macro-salt: #3b82f6;
+  /* Neutral grey palette - inverted for dark mode */
+  --grey-50: #232120;
+  --grey-100: #3a3632;
+  --grey-200: #524d48;
+  --grey-300: #6b655e;
+  --grey-400: #8c857c;
+  --grey-500: #b5aea6;
+  --grey-600: #d6d1cb;
+  --grey-700: #e8e4e0;
+  --grey-800: #f3f1ef;
+  --grey-900: #faf9f8;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-success {
+    color: var(--success);
+  }
+  .text-warning {
+    color: var(--warning);
+  }
+  .text-info {
+    color: var(--info);
+  }
+  .bg-success {
+    background-color: var(--success);
+  }
+  .bg-warning {
+    background-color: var(--warning);
+  }
+  .bg-info {
+    background-color: var(--info);
+  }
+}
