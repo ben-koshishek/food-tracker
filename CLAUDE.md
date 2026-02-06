@@ -18,6 +18,8 @@ pnpm dev
 - `pnpm test:run` - Run tests once
 - `pnpm test:coverage` - Run tests with coverage report
 - `pnpm lint` - Run ESLint
+- `pnpm format` - Format all files with Prettier
+- `pnpm format:check` - Check formatting without writing
 
 ## Tech Stack
 
@@ -74,11 +76,13 @@ src/
 ## Database Schema (Dexie v4)
 
 **FoodEntry** - Daily food log entries
+
 - id, date, barcode, name, servingSize, servingUnit
 - calories, protein, carbs, fat, fiber, sugar, salt
 - mealNumber, createdAt
 
 **SavedFood** - Personal food database (local cache)
+
 - id, barcode, name, brand, category
 - Quality scores: nutriScoreGrade, nutriScoreScore, novaGroup
 - Core macros: caloriesPer100g, proteinPer100g, carbsPer100g, fatPer100g, fiberPer100g, sugarPer100g, saltPer100g
@@ -90,17 +94,21 @@ src/
 - imageUrl, createdAt
 
 **StorePricing** - Store price tracking (multiple per food)
+
 - id, savedFoodId, store, price, packageSize, packageUnit, pricePerKg, lastUpdated
 
 **UserGoals**
+
 - id, dailyCalories, dailyProtein, dailyCarbs, dailyFat
 - dailyFiber, dailySugar, dailySalt
 
 **MealTemplate** - Reusable meal combos
+
 - id, name, createdAt
 - Items: mealTemplateId, savedFoodId, servingSize
 
 **DayTemplate** - Full day plans
+
 - id, name, createdAt
 - Meals: dayTemplateId, mealTemplateId, mealNumber
 
@@ -124,6 +132,7 @@ Settings page includes a calorie/macro calculator using the Mifflin-St Jeor equa
 Base URL: `https://world.openfoodfacts.org/api/v2/`
 
 Key endpoints used:
+
 - Search: `GET /search?search_terms={query}&countries_tags=germany`
 - By barcode: `GET /product/{barcode}`
 
@@ -131,7 +140,7 @@ Key endpoints used:
 
 Configured for GitHub Pages with `base: '/food-tracker/'` in vite.config.ts (build only, dev uses `/`).
 
-CI/CD via `.github/workflows/ci.yml`: type check → lint → test → build → deploy to GitHub Pages.
+CI/CD via `.github/workflows/ci.yml`: type check → lint → format check → test → build → deploy to GitHub Pages.
 
 ## Key Files
 
@@ -143,4 +152,28 @@ CI/CD via `.github/workflows/ci.yml`: type check → lint → test → build →
 - `src/types/index.ts` - TypeScript interfaces
 - `src/components/ErrorBoundary.tsx` - App-wide error handling
 - `vite.config.ts` - Vite configuration (base URL, proxy for OFF API)
-- `.github/workflows/ci.yml` - CI/CD pipeline (build, lint, test, deploy)
+- `.github/workflows/ci.yml` - CI/CD pipeline (build, lint, format, test, deploy)
+
+## Conventions
+
+### Git
+
+- Push to `main` directly (no feature branches for solo work)
+- Commit messages: gitmoji + short imperative description
+    - Examples: `✨ Add barcode scanner`, `🐛 Fix calorie rounding`, `♻️ Refactor template dialog`
+    - Reference: https://gitmoji.dev
+- Keep commits atomic — one logical change per commit
+
+### Code Style
+
+- Prettier + ESLint enforced via pre-commit hook
+- Single quotes, semicolons, 4-space indent
+- Functional components, named exports
+- Local state with `useState` + `useMemo` — no global state library
+- shadcn/ui for new UI primitives
+
+### Testing
+
+- Write unit tests for new `lib/` functions
+- Component tests not required (no jsdom setup)
+- Run `pnpm test:run` before pushing

@@ -1,37 +1,35 @@
-import * as React from "react"
-import { Progress as ProgressPrimitive } from "radix-ui"
+import * as React from 'react';
+import { Progress as ProgressPrimitive } from 'radix-ui';
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
 function Progress({
-  className,
-  value,
-  style,
-  ...props
+    className,
+    value,
+    style,
+    ...props
 }: React.ComponentProps<typeof ProgressPrimitive.Root>) {
-  return (
-    <ProgressPrimitive.Root
-      data-slot="progress"
-      className={cn(
-        "relative h-2 w-full overflow-hidden rounded-full",
-        className
-      )}
-      style={{
-        backgroundColor: 'color-mix(in srgb, var(--progress-color, var(--primary)) 20%, transparent)',
-        ...style,
-      }}
-      {...props}
-    >
-      <ProgressPrimitive.Indicator
-        data-slot="progress-indicator"
-        className="h-full w-full flex-1 transition-all"
-        style={{
-          backgroundColor: 'var(--progress-color, var(--primary))',
-          transform: `translateX(-${100 - (value || 0)}%)`,
-        }}
-      />
-    </ProgressPrimitive.Root>
-  )
+    return (
+        <ProgressPrimitive.Root
+            data-slot="progress"
+            className={cn('relative h-2 w-full overflow-hidden rounded-full', className)}
+            style={{
+                backgroundColor:
+                    'color-mix(in srgb, var(--progress-color, var(--primary)) 20%, transparent)',
+                ...style,
+            }}
+            {...props}
+        >
+            <ProgressPrimitive.Indicator
+                data-slot="progress-indicator"
+                className="h-full w-full flex-1 transition-all"
+                style={{
+                    backgroundColor: 'var(--progress-color, var(--primary))',
+                    transform: `translateX(-${100 - (value || 0)}%)`,
+                }}
+            />
+        </ProgressPrimitive.Root>
+    );
 }
 
-export { Progress }
+export { Progress };
